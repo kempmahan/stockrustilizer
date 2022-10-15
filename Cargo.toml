@@ -1,8 +1,20 @@
 [package]
 name = "stockrustilizer"
 version = "0.1.0"
+authors = ["Kemper Mahanes <kemper.mahanes@gmail.com>"]
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[lib]
+name = "stock_lib"
+path = "src/stock_lib.rs"
+doctest = false
+
+[[example]]
+name = "example_data_pull"
+path = "examples/read_data.rs"
+
+[[bin]]
+name = "stockrustilizer"
+path = "src/bin/main.rs"
 
 [dependencies]
