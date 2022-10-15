@@ -2,10 +2,10 @@ use chrono::prelude::DateTime;
 use chrono::{TimeZone, Utc};
 use chrono_tz::MST;
 use std::time::{Duration, UNIX_EPOCH};
-use yahoo_finance_api as yahoo;
-use yahoo_finance_api::Quote;
 use stock_lib::convert_timestamp_to_mst;
 use stock_lib::stock_data::StockContext;
+use yahoo_finance_api as yahoo;
+use yahoo_finance_api::Quote;
 
 #[tokio::main]
 async fn main() {
@@ -17,17 +17,9 @@ async fn main() {
     // including timestamp,open,close,high,low,volume
     match response {
         Ok(response) => {
-            let quotes:Vec<Quote> = response.quotes().unwrap();
+            let quotes: Vec<Quote> = response.quotes().unwrap();
             println!("Apple's quotes in January: {:?}", &quotes);
-            for quote in &quotes {
-                let stocks = StockContext::from(quote);
-                println!(
-                    "{} It opened at: {} and closed at {}",
-                    convert_timestamp_to_mst(stocks.timestamp),
-                    stocks.open,
-                    stocks.close
-                );
-            }
+            let _data = StockContext::new(&quotes);
         }
         Err(e) => {
             println!("Hit error: {:?}", e);

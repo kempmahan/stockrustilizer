@@ -20,5 +20,6 @@ path = "src/bin/main.rs"
 [dependencies]
 chrono = "0.4.19"
 chrono-tz = "0.6.3"
+ta = "0.5.0"
 tokio = { version = "1.11", features = ["full"] }
 yahoo_finance_api = "1.0"
