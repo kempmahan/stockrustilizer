@@ -19,7 +19,12 @@ async fn main() {
         Ok(response) => {
             let quotes: Vec<Quote> = response.quotes().unwrap();
             println!("Apple's quotes in January: {:?}", &quotes);
-            let _data = StockContext::new(&quotes);
+            let data = StockContext::new(&quotes);
+            for dat in &data.step_information {
+                println!("{:?}", dat);
+            }
+            data.head(5);
+            data.tail(5);
         }
         Err(e) => {
             println!("Hit error: {:?}", e);
